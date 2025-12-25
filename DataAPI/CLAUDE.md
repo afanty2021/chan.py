@@ -81,6 +81,42 @@ date,time,open,high,low,close,volume
 2023-01-01,09:30:00,10.0,10.5,9.8,10.2,1000000
 ```
 
+### 5. AkshareAPI.py - Akshare 数据源
+
+**功能**：集成 akshare 库，提供 A股和指数历史数据
+
+**特点**：
+- 免费开源的 A股数据接口
+- 支持日线、周线、月线多种周期
+- 支持前复权、后复权、不复权
+- 同时支持个股和指数数据
+- 无需登录认证
+
+**使用示例**：
+```python
+from DataAPI.AkshareAPI import CAkshare
+from Common.CEnum import DATA_SRC, KL_TYPE, AUTYPE
+
+# 创建 CChan 时使用 Akshare 数据源
+chan = CChan(
+    code="000001",           # 股票代码
+    begin_time="2020-01-01",
+    end_time="2023-12-31",
+    data_src=DATA_SRC.AKSHARE,
+    lv_list=[KL_TYPE.K_DAY],
+    autype=AUTYPE.QFQ        # 前复权
+)
+```
+
+**支持的周期**：
+- `K_DAY`: 日线
+- `K_WEEK`: 周线
+- `K_MON`: 月线
+
+**指数识别**：
+- 代码格式如 `sh000001`、`sz399001` 自动识别为指数
+- 指数代码通常以 `000` 或 `399` 开头
+
 ## 数据源枚举
 
 在 `Common/CEnum.py` 中定义：
@@ -88,6 +124,7 @@ date,time,open,high,low,close,volume
 ```python
 class DATA_SRC(Enum):
     BAO_STOCK = "baostock"      # BaoStock A股数据
+    AKSHARE = "akshare"         # Akshare A股数据
     CCXT = "ccxt"               # 数字货币交易所
     CSV = "csv"                 # CSV 文件
     TDX = "tdx"                 # 通达信

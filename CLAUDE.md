@@ -67,6 +67,7 @@ graph TD
 ### 1. 数据层 (DataAPI)
 负责多种数据源的接入和管理：
 - **BaoStockAPI**：baostock 数据源接口
+- **AkshareAPI**：akshare 数据源接口（新增）
 - **ccxt**：数字货币交易所接口
 - **csvAPI**：CSV 文件数据读取
 - **CommonStockAPI**：通用股票数据接口
@@ -182,7 +183,7 @@ chan.plot()
 - **总文件数**：60+ Python 文件
 - **代码行数**：22000+ 行（完整版）
 - **核心类**：50+ 个
-- **支持的数据源**：4 种
+- **支持的数据源**：5 种（BaoStock、Akshare、ccxt、CSV、自定义）
 - **技术指标**：10+ 种
 - **买卖点策略**：多种内置策略
 
